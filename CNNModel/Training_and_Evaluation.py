@@ -6,9 +6,6 @@ import torch.optim as optim
 import torchvision.datasets as Dataset
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
-
-writer = SummaryWriter()
 
 
 # Set the device
@@ -57,8 +54,6 @@ for each_epoch in range(epoch):
         # forward
         output = model(images)
         loss = criterion(output, labels)
-        if batch_idx % 10 == 0:
-            writer.add_scalar("Train Loss", loss, batch_idx)
 
         # backward
         loss.backward()
@@ -97,3 +92,8 @@ def check_accuracy(loader, model):
 
 check_accuracy(trainloader, model)
 check_accuracy(testloader, model)
+
+# Save the model
+PATH = '../Saved_Models/CNNMOdel/cifar_net.pth'
+torch.save(model.state_dict(), PATH)
+
