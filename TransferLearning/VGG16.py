@@ -15,7 +15,7 @@ in_channel = 3
 num_classes = 10
 learning_rate = 0.001
 batch_size = 1024
-num_epoch = 5
+epoch = 5
 
 
 class Identity(nn.Module):
