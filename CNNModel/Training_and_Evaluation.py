@@ -17,7 +17,7 @@ in_channels = 3
 no_class = 10
 learning_rate = 0.001
 batch_size = 1024
-epoch = 3
+epoch = 5
 
 # Load Data
 
