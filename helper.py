@@ -43,6 +43,8 @@ def train(model, optimizer, loss_function, dataloader, epoch):
             # update
             optimizer.step()
 
+    print("\n Training completed!!")
+
 
 def check_accuracy(dataloader, model):
     """ Check the accuracy of the model (better to use after training)
@@ -53,7 +55,7 @@ def check_accuracy(dataloader, model):
     """
     total = 0
     correct = 0
-
+    print("\n------Check Accuracy-----")
     model.eval()
     with torch.no_grad():
         for data in dataloader:

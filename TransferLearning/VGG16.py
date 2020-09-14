@@ -1,5 +1,4 @@
 # Imports
-import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.datasets as Dataset
@@ -13,10 +12,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyper Parameters
 in_channel = 3
-mum_classes = 10
-learning_rate = 1e-3
+num_classes = 10
+learning_rate = 0.001
 batch_size = 1024
-epoch = 5
+num_epoch = 5
 
 
 class Identity(nn.Module):
@@ -30,7 +29,7 @@ class Identity(nn.Module):
 # Load Pre-trained model and retrain it
 model = torchvision.models.vgg16(pretrained=True)
 model.avgpool = Identity()
-model.classifier = nn.Linear(512, 10)
+model.classifier = nn.Linear(512, num_classes)
 model.to(device)
 
 # Load Data
@@ -56,3 +55,8 @@ print("Checking accuracy on train data.")
 check_accuracy(trainloader, model)
 print("Checking accuracy in test data.")
 check_accuracy(testloader, model)
+
+
+#Save the model
+PATH = '../Saved_Models/VGG16_cifar.pth'
+torch.save(model.state_dict(), PATH)
