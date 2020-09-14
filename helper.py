@@ -23,7 +23,6 @@ def train(model, optimizer, loss_function, dataloader, epoch):
     print("\n----- Number of Epoches : ", epoch)
 
     for each_epoch in range(epoch):
-        print("\nEpoch : ", each_epoch+1)
         for batch_idx, data in enumerate(dataloader):
             images, labels = data
 
