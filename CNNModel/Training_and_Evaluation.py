@@ -1,5 +1,4 @@
 # Imports
-import torch
 import torch.nn as nn
 from CNNModel.model import ImageClassifierOnCIFAR
 import torch.optim as optim
@@ -17,7 +16,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 in_channels = 3
 no_class = 10
 learning_rate = 0.001
-batch_size = 4
+batch_size = 1024
 epoch = 3
 
 # Load Data
@@ -48,6 +47,6 @@ print("Checking accuracy in test data.")
 check_accuracy(testloader, model)
 
 #Save the model
-PATH = '../Saved_Models/cifar_net.pth'
+PATH = '../Saved_Models/CNNModel_cifar.pth'
 torch.save(model.state_dict(), PATH)
 
