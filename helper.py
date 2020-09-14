@@ -20,8 +20,10 @@ def train(model, optimizer, loss_function, dataloader, epoch):
     # set model to training mode
     model.train()
     print("\n------Training Started-----")
+    print("\n----- Number of Epoches : ", epoch)
 
     for each_epoch in range(epoch):
+        print("\nEpoch : ", each_epoch+1)
         for batch_idx, data in enumerate(dataloader):
             images, labels = data
 
@@ -42,21 +44,19 @@ def train(model, optimizer, loss_function, dataloader, epoch):
             optimizer.step()
 
 
-def check_accuracy(loader, model):
+def check_accuracy(dataloader, model):
     """ Check the accuracy of the model (better to use after training)
 
         Args:
-            loader: (DataLoader) a torch.utils.data.DataLoader object that fetches training or test data
+            dataloader: (DataLoader) a torch.utils.data.DataLoader object that fetches training or test data
             model: (torch.nn.Module) the neural network
     """
-
-
     total = 0
     correct = 0
 
     model.eval()
     with torch.no_grad():
-        for data in loader:
+        for data in dataloader:
             img, target = data
 
             img = img.to(device)
@@ -67,4 +67,4 @@ def check_accuracy(loader, model):
             total += target.size(0)
             correct += (prediction == target).sum()
 
-        print(f"{correct} / {total} were correct, which means the accuracy is : {float(correct) / float(total) * 100 :.2f}")
+        print(f"\n{correct} / {total} were correct, which means the accuracy is : {float(correct) / float(total) * 100 :.2f}")
