@@ -59,4 +59,4 @@ check_accuracy(testloader, model)
 
 #Save the model
 PATH = '../Saved_Models/VGG16_cifar.pth'
-torch.save(model.state_dict(), PATH)
+torch.save(model, PATH)
