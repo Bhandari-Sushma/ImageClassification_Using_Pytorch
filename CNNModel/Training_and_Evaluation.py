@@ -16,8 +16,8 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 in_channels = 3
 no_class = 10
 learning_rate = 0.001
-batch_size = 1024
-epoch = 5
+batch_size = 32
+epoch = 20
 
 # Load Data
 
@@ -48,5 +48,6 @@ check_accuracy(testloader, model)
 
 #Save the model
 PATH = '../Saved_Models/CNNModel_cifar.pth'
-torch.save(model.state_dict(), PATH)
+torch.save(model.state_dict(), PATH)  # this was successful
 
+#torch.save(model, PATH)   # not successful yet
